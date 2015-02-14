@@ -1,0 +1,24 @@
+{
+  "name": "OM-CRUD",
+  "version": "0.0.1",
+  "homepage": "https://github.com/cfontes/OM-CRUD",
+  "authors": [
+    "Cristiano <cristianofontes@gmail.com>"
+  ],
+  "description": "OM-CRUD",
+  "main": "app",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "OM-CRUD"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
