@@ -2,11 +2,14 @@ package br.com.omcrud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@RestController
+@ComponentScan("br.com.omcrud")
 @EnableAutoConfiguration
+@EnableJpaRepositories("br.com.omcrud.persistence.repositories")
+@EntityScan("br.com.omcrud.persistence.entities")
 public class AppStart {
 
     /**
@@ -14,11 +17,7 @@ public class AppStart {
      * @param args args from user
      */
     public static void main(String[] args) {
-        SpringApplication.run(AppStart.class, args);
+         SpringApplication.run(AppStart.class, args);
     }
 
-    @RequestMapping("/")
-    String home() {
-        return "Hello World!";
-    }
 }

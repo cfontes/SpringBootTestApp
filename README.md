@@ -2,7 +2,7 @@
 
 ---------------
 
-**Using**:
+###Using:
 
  * Spring Boot
  * Spring MVC
@@ -15,7 +15,11 @@ This will be used as a base for a project and it's just a test of the stack.
 
 Currently using bower and Maven.
 
-**TODO**:
+###To run:
+
+mvn spring-boot:run
+
+###TODO:
 
 * ~~Create folder structure~~
 * ~~Create pom.xml~~
