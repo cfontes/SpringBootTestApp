@@ -1,8 +1,8 @@
-package br.com.omcrud.persistence.entities;
+package br.com.omcrud.security;
 
 public enum RoleEnum {
 
-    USER("User");
+    USER("ROLE_USER"), ADMIN("ROLE_ADMIN");
 
     private String description;
 

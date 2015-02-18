@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 import br.com.omcrud.security.PasswordCrypto;
+import br.com.omcrud.security.RoleEnum;
 
 @Entity
 @Table(name = "users")

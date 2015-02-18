@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static PasswordEncoder encoder;
@@ -25,15 +25,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/auth/**").authenticated();
-
-        http.formLogin().defaultSuccessUrl("/auth").loginPage("/login").permitAll().and().logout()
-            .logoutSuccessUrl("/logout").permitAll();
+        http
+            .authorizeRequests()
+            .antMatchers("/**").hasRole("USER")
+            .and()
+            .formLogin();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+//        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+        auth
+            .inMemoryAuthentication()
+            .withUser("user")
+                .password("password")
+                .roles("USER")
+            .and()
+            .withUser("adminr")
+                .password("password")
+                .roles("ADMIN","USER");
+    }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
     @Bean

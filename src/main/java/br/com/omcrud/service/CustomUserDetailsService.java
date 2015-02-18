@@ -6,9 +6,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import br.com.omcrud.persistence.entities.UserRole;
-import br.com.omcrud.persistence.repositories.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import br.com.omcrud.persistence.entities.UserRole;
+import br.com.omcrud.persistence.repositories.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -31,7 +31,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         br.com.omcrud.persistence.entities.User user = userRepository.findByUsername(username);
         List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
-
         return buildUserForAuthentication(user, authorities);
 
     }
@@ -44,11 +43,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
 
         Set<GrantedAuthority> setAuths = new HashSet<>();
-
         // Build user's authorities
         setAuths.addAll(userRoles.stream().map(userRole -> new SimpleGrantedAuthority(userRole.getRoleName()))
                                  .collect(Collectors.toList()));
-
         return new ArrayList<>(setAuths);
     }
 }

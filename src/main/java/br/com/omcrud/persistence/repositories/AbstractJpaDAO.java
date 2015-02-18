@@ -21,10 +21,6 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
         return entityManager.find(clazz, id);
     }
 
-    public T findByUsername(String username){
-        return  entityManager.find(clazz, username);
-    }
-
     @SuppressWarnings("unchecked")
     public List<T> findAll() {
         return entityManager.createQuery("from " + clazz.getName()).getResultList();

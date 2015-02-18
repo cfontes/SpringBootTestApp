@@ -17,9 +17,9 @@ Currently using Bower and Maven.
 
 Download vagrant and follow http://www.pgdevbox.com/ to get postgre running there.
 
-then run
+**then run**
 
-mvn spring-boot:run
+```mvn spring-boot:run``` or simply run the main method.
 
 It will be available on localhost:8888
 
