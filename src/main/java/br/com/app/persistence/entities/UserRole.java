@@ -1,4 +1,4 @@
-package br.com.omcrud.persistence.entities;
+package br.com.app.persistence.entities;
 
 import javax.persistence.*;
 

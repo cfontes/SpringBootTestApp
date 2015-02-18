@@ -1,4 +1,4 @@
-package br.com.omcrud.security;
+package br.com.app.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

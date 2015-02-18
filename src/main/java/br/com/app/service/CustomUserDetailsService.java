@@ -1,4 +1,4 @@
-package br.com.omcrud.service;
+package br.com.app.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,8 +16,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.omcrud.persistence.entities.UserRole;
-import br.com.omcrud.persistence.repositories.UserRepository;
+import br.com.app.persistence.entities.UserRole;
+import br.com.app.persistence.repositories.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -29,13 +29,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 
-        br.com.omcrud.persistence.entities.User user = userRepository.findByUsername(username);
+        br.com.app.persistence.entities.User user = userRepository.findByUsername(username);
         List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
         return buildUserForAuthentication(user, authorities);
 
     }
 
-    private User buildUserForAuthentication( br.com.omcrud.persistence.entities.User user,
+    private User buildUserForAuthentication( br.com.app.persistence.entities.User user,
                                                    List<GrantedAuthority> authorities) {
         return new User(user.getUsername(), user.getPassword(), authorities);
     }

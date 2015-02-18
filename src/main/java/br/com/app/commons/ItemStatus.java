@@ -1,14 +1,14 @@
-package br.com.omcrud.commons;
+package br.com.app.commons;
 
 /**
  * The current status of a given OM;
  */
-public enum OMStatus {
+public enum ItemStatus {
     PROPOSED("Proposed"),ONGOING("OnGoing"),Finished("Finished");
 
     private String description;
 
-    private OMStatus(String text){
+    private ItemStatus(String text){
         this.description = text;
     }
 

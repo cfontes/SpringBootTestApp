@@ -1,4 +1,4 @@
-package br.com.omcrud.persistence.repositories;
+package br.com.app.persistence.repositories;
 
 import java.io.Serializable;
 import java.util.List;

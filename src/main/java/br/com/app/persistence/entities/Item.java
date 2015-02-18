@@ -1,4 +1,4 @@
-package br.com.omcrud.persistence.entities;
+package br.com.app.persistence.entities;
 
 import java.util.Date;
 import java.util.List;
@@ -12,19 +12,19 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.omcrud.commons.OMStatus;
+import br.com.app.commons.ItemStatus;
 
 /**
- * Represents and OM
+ * Represents an item
  */
 @Entity
-public class OMEntity {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToMany(mappedBy = "oms")
+    @ManyToMany(mappedBy = "items")
     private List<User> author;
 
     private String title;
@@ -32,7 +32,7 @@ public class OMEntity {
     private String description;
 
     @Enumerated
-    private OMStatus status;
+    private ItemStatus status;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
@@ -79,11 +79,11 @@ public class OMEntity {
         this.description = description;
     }
 
-    public OMStatus getStatus() {
+    public ItemStatus getStatus() {
         return status;
     }
 
-    public void setStatus(OMStatus status) {
+    public void setStatus(ItemStatus status) {
         this.status = status;
     }
 

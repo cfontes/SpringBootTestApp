@@ -1,4 +1,4 @@
-package br.com.omcrud;
+package br.com.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableAutoConfiguration
-@ComponentScan("br.com.omcrud")
-@EnableJpaRepositories("br.com.omcrud.persistence.repositories")
-@EntityScan("br.com.omcrud.persistence.entities")
+@ComponentScan("br.com.app")
+@EnableJpaRepositories("br.com.app.persistence.repositories")
+@EntityScan("br.com.app.persistence.entities")
 @EnableTransactionManagement
 public class AppStart {
 

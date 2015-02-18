@@ -1,4 +1,4 @@
-package br.com.omcrud.persistence.entities;
+package br.com.app.persistence.entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,8 +19,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-import br.com.omcrud.security.PasswordCrypto;
-import br.com.omcrud.security.RoleEnum;
+import br.com.app.security.PasswordCrypto;
+import br.com.app.security.RoleEnum;
 
 @Entity
 @Table(name = "users")
@@ -55,8 +55,8 @@ public class User implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date birthDate;
     @ManyToMany
-    @JoinTable(name = "Author_OM")
-    private List<OMEntity> oms;
+    @JoinTable(name = "Author_Items")
+    private List<Item> items;
 
     public static User createUser(String username, String email, String password) {
         User user = new User();
@@ -155,11 +155,11 @@ public class User implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public List<OMEntity> getOms() {
-        return oms;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setOms(List<OMEntity> oms) {
-        this.oms = oms;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

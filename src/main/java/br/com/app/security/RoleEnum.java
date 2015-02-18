@@ -1,4 +1,4 @@
-package br.com.omcrud.security;
+package br.com.app.security;
 
 public enum RoleEnum {
 

@@ -22,7 +22,7 @@
 //    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 //        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 //        em.setDataSource(dataSource());
-//        em.setPackagesToScan(new String[] {"br.com.omcrud.persistence"});
+//        em.setPackagesToScan(new String[] {"br.com.app.persistence"});
 //
 //        final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 //        em.setJpaVendorAdapter(vendorAdapter);

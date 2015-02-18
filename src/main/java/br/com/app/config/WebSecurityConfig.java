@@ -1,4 +1,4 @@
-package br.com.omcrud.config;
+package br.com.app.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
