@@ -2,6 +2,8 @@
 
 ---------------
 
+[![Build Status](https://travis-ci.org/cfontes/SpringBootTestApp.svg?branch=master)](https://travis-ci.org/cfontes/SpringBootTestApp)
+
 ###Using:
 
  * Spring Boot

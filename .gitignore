@@ -160,6 +160,3 @@ local.properties
 
 # sftp configuration file
 sftp-config.json
-
-### Vagrant stuff
-.vagrant
