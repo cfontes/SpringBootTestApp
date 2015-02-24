@@ -19,9 +19,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-import br.com.app.security.PasswordCrypto;
-import br.com.app.security.RoleEnum;
-
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -53,27 +50,10 @@ public class User implements Serializable {
     private Date created;
 
     @Temporal(TemporalType.DATE)
-    private Date birthDate;
+    private Date       birthDate;
     @ManyToMany
     @JoinTable(name = "Author_Items")
     private List<Item> items;
-
-    public static User createUser(String username, String email, String password) {
-        User user = new User();
-
-        user.username = username;
-        user.email = email;
-        user.password = PasswordCrypto.getInstance().encrypt(password);
-
-        if (user.roles == null) {
-            user.roles = new HashSet<>();
-        }
-
-        //create a new user with basic user privileges
-        user.roles.add(new UserRole(RoleEnum.USER.toString(), user));
-
-        return user;
-    }
 
     public Long getId() {
         return id;
@@ -116,6 +96,9 @@ public class User implements Serializable {
     }
 
     public Set<UserRole> getRoles() {
+        if(this.roles == null) {
+            this.roles = new HashSet<>();
+        }
         return roles;
     }
 

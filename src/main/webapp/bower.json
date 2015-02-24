@@ -1,17 +1,17 @@
 {
-  "name": "OM-CRUD",
+  "name": "SpringBootApp",
   "version": "0.0.1",
-  "homepage": "https://github.com/cfontes/OM-CRUD",
+  "homepage": "https://github.com/cfontes/SpringBootApp",
   "authors": [
-    "Cristiano <cristianofontes@gmail.com>"
+    "cfontes <cristianofontes@gmail.com>"
   ],
-  "description": "OM-CRUD",
+  "description": "SpringBootApp",
   "main": "app",
   "moduleType": [
     "globals"
   ],
   "keywords": [
-    "OM-CRUD"
+    "SpringBootApp"
   ],
   "license": "MIT",
   "ignore": [
@@ -20,5 +20,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "angular": ">=1 <1.3.0"
+  }
 }

@@ -1,6 +1,8 @@
 package br.com.app.config;
 
 
+import br.com.app.security.CsrfHeaderFilter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,33 +14,44 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static PasswordEncoder encoder;
 
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private UserDetailsService customUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests().antMatchers("/app/").hasRole("USER").and().formLogin();
         http
-            .authorizeRequests()
-            .antMatchers("/**").hasRole("USER")
+            .formLogin()
             .and()
-            .formLogin();
+            .authorizeRequests()
+            .antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
+            .csrf().csrfTokenRepository(csrfTokenRepository())
+            .and()
+            .logout();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-        auth
-            .inMemoryAuthentication()
+        auth.inMemoryAuthentication()
             .withUser("user")
-                .password("password")
+            .password("password")
                 .roles("USER")
             .and()
             .withUser("adminr")
@@ -46,8 +59,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles("ADMIN","USER");
     }
 
+    private CsrfTokenRepository csrfTokenRepository() {
+        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+        repository.setHeaderName("X-XSRF-TOKEN");
+        return repository;
+    }
+
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
