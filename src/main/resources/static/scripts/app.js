@@ -47,7 +47,7 @@ angular.module('login',[ 'ngRoute' ])
         $scope.credentials = {};
 
         $scope.login = function() {
-            $http.post('login', $.param($scope.credentials), {
+            $http.post('login', $scope.credentials, {
                 headers : {
                     "content-type" : "application/x-www-form-urlencoded"
                 }
