@@ -18,7 +18,7 @@ angular.module('login',[ 'ngRoute' ])
     .controller('home',
 
     function($scope, $http) {
-        $http.get('/').success(function(data) {
+        $http.get('/home').success(function(data) {
             $scope.greeting = data;
         })
     })
@@ -62,7 +62,6 @@ angular.module('login',[ 'ngRoute' ])
                     }
                 });
             }).error(function(data) {
-                $location.path("/login");
                 $scope.error = true;
                 $rootScope.authenticated = false;
             })

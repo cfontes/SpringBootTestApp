@@ -23,11 +23,11 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static PasswordEncoder encoder;
-
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private UserDetailsService customUserDetailsService;
+
+    private static PasswordEncoder encoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -36,15 +36,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
             .and()
             .authorizeRequests()
-            .antMatchers("/", "/styles/**","/scripts/bower_components/*/*", "/scripts/**","/index.html", "/partials/**")
+            .antMatchers("/", "/styles/**", "/scripts/bower_components/*/*", "/scripts/**", "/partials/**")
             .permitAll()
             .anyRequest()
-            .authenticated()
-            .and()
-            .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
-            .csrf().csrfTokenRepository(csrfTokenRepository())
-            .and()
-            .logout();
+            .authenticated().and()
+            .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class).csrf().csrfTokenRepository(csrfTokenRepository())
+            .and().logout();
     }
 
     @Override
@@ -53,11 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
             .withUser("user")
             .password("password")
-                .roles("USER")
-            .and()
+                .roles("USER").and()
             .withUser("adminr")
                 .password("password")
-                .roles("ADMIN","USER");
+                .roles("ADMIN", "USER");
     }
 
     private CsrfTokenRepository csrfTokenRepository() {
