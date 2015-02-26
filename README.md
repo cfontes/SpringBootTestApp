@@ -29,6 +29,9 @@ Or just install vagrant, cd to the root of this project and ```vagrant up``` to 
 
 It will be available on localhost:8888
 
+User: user
+Pass: password
+
 ###TODO:
 
 * ~~Create folder structure~~
