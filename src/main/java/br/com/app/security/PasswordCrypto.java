@@ -2,22 +2,13 @@ package br.com.app.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-//TODO : create a decent version of this for production
+@Service
 public class PasswordCrypto {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    private static PasswordCrypto instance;
-
-    public static PasswordCrypto getInstance() {
-        if(instance == null) {
-            instance = new PasswordCrypto();
-        }
-
-        return instance;
-    }
 
     public String encrypt(String str) {
         return passwordEncoder.encode(str);

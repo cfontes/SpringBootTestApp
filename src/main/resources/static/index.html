@@ -8,20 +8,25 @@
 </head>
 
 <body ng-app="login" ng-cloak>
+
     <div ng-controller="LoginController" class="container">
         <ul class="nav nav-pills" role="tablist">
             <li class="active"><a href="#/">home</a></li>
-            <li><a href="#/login">login</a></li>
+            <li ng-show="!authenticated"><a href="#/login">login</a></li>
+            <li ng-show="!authenticated"><a href="#/register">register  </a></li>
             <li ng-show="authenticated"><a href="" ng-click="logout()">logout</a></li>
         </ul>
     </div>
     <div ng-view class="container"></div>
+
+    <!--Imports-->
     <script src="scripts/bower_components/angular/angular.js" type="text/javascript"></script>
     <script src="scripts/bower_components/angular-route/angular-route.js" type="text/javascript"></script>
     <script src="scripts/app.js" type="text/javascript"></script>
     <script src="scripts/routes.js" type="application/javascript"></script>
     <script src="scripts/controllers/homeController.js" type="application/javascript"></script>
     <script src="scripts/controllers/loginController.js" type="application/javascript"></script>
+    <script src="scripts/controllers/registerController.js" type="application/javascript"></script>
 </body>
 
 </html>

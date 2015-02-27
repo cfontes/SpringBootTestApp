@@ -1,0 +1,9 @@
+<div class="alert alert-danger" ng-show="error">
+    There was a problem registering. Please try again.
+</div>
+<h2>Register new user</h2>
+<form ng-controller="RegisterController" role="form" ng-submit="register()">
+    Username : <input ng-model="username">
+    Password : <input type="password" ng-model="password">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

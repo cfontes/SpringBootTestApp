@@ -1,10 +1,8 @@
-/**
- * Created by cfontes on 25/02/2015.
- */
+
 myApp.controller('LoginController',
     function ($rootScope, $scope, $http, $location) {
 
-        var authenticate = function (callback) {
+        $scope.authenticate = function (callback) {
 
             $http.get('users').success(function (data) {
                 if (data.name) {
@@ -20,12 +18,24 @@ myApp.controller('LoginController',
 
         };
 
-        authenticate();
+        $scope.authenticate();
         $scope.credentials = {};
 
         $scope.login = function () {
-            $http.post('login', $scope.credentials).success(function (data) {
-                authenticate(function () {
+            $http.post('login', $scope.credentials, {
+
+                headers : {
+                    "content-type" : 'application/x-www-form-urlencoded; charset=UTF-8'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                }
+            })
+                .success(function (data) {
+                $scope.authenticate(function () {
                     if ($rootScope.authenticated) {
                         $location.path("/");
                         $scope.error = false;
